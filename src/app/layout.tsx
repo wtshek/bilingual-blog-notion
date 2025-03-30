@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import "react-notion/src/styles.css";
+import "prismjs/themes/prism-tomorrow.css";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interFont = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -25,9 +24,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${interFont.variable} antialiased  flex flex-col min-h-screen`}
       >
+        <header className="container mx-auto px-4 py-8 relative w-full text-start border-b-gray-200 border-b-[1px]">
+          <Link href="/" className="text-2xl lg:text-3xl font-bold w-full">
+            WT Shek
+          </Link>
+        </header>
         {children}
+        <footer className="container py-4 px-4 mx-auto border-t mt-auto">
+          <LanguageSwitcher />
+          <div className="mt-4">
+            Wing Tung Shek © {new Date().getFullYear()}
+          </div>
+        </footer>
       </body>
     </html>
   );
